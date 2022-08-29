@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/style.css">
+  <title>Map-tools</title>
+</head>
+<script async
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDAOSMHg9d_qA77o98imb_J6W246FIuSHY&callback=initMap">
+
+  </script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+
+<body>
+  <div class="container">
+    <div class="header-box">
+      <div class="menu-left">
+        <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="white" class="bi bi-list"
+          viewBox="0 0 16 16">
+          <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1
+              0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0
+              1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0
+              1H3a.5.5 0 0 1-.5-.5z" />
+        </svg>
+      </div>
+      <div class="menu-center">
+        <span>Menu</span>
+        <span>Ferramentas</span>
+        <span>Relatórios</span>
+        <span>Gerencia</span>
+      </div>
+      <div class="menu-right">
+        <img src="images/aiko-logo.png" alt="Logo.png" height="44px">
+      </div>
+    </div>
+    <div class="content-box">
+      <div class="map-container">
+        <div class="map-box map" id="map"></div>
+        <script>
+          function initMap() {
+            const sp = { lat: -23.5489, lng: -46.6388 };
+            const map = new google.maps.Map(document.getElementById("map"), {
+              zoom: 10,
+              center: sp,
+            });
+
+            const contentString =
+              '<div id="content">' +
+              '<div id="siteNotice">' +
+              "</div>" +
+              '<h1>CA-0001</h1>' +
+              '<div id="bodyContent">' +
+              "<p>Caminhão de carga</p>" +
+              "</div>" +
+              "</div>";
+            const infowindow = new google.maps.InfoWindow({
+              content: contentString,
+            });
+
+
+
+
+            const marker = new google.maps.Marker({
+              position: sp,
+              map,
+              title: "CA-0001",
+            });
+
+            marker.addListener("click", () => {
+              infowindow.open({
+                anchor: marker,
+                map,
+                shouldFocus: false,
+              });
+            });
+
+
+
+          }
+
+          window.initMap = initMap;
+        </script>
+
+        <div class="list-box">
+          <span>Quantidade de Equipamentos e seus status</span>
+          <div>
+            <canvas id="grafic1"></canvas>
+          </div>
+          <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+          <script>
+            const data1 = {
+              labels: [
+                'Operando',
+                'Parado',
+                'Manutenção'
+              ],
+              datasets: [{
+                label: 'My First Dataset',
+                data: [370, -15, -80],
+                backgroundColor: [
+                  '#2ecc71',
+                  '#f1c40f',
+                  '#e74c3c'
+                ],
+                hoverOffset: 4
+              }]
+            };
+
+            const config1 = {
+              type: 'doughnut',
+              data: data1,
+
+            };
+
+            const myChart = new Chart(
+              document.getElementById('grafic1'),
+              config1
+            );
+          </script>
+
+
+
+
+
+        </div>
+      </div>
+      <div class="final-box">
+        <div class="grafico" id="">
+          </div>
+        
+
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script>
+          const labels = [1,2,3,4];
+          const data = {
+            labels: labels,
+            datasets: [{
+              label: 'My First Dataset',
+              data: [65, 59, 80, 81],
+              backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(255, 159, 64, 0.2)',
+                'rgba(255, 205, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)'
+              ],
+              borderColor: [
+                'rgb(255, 99, 132)',
+                'rgb(255, 159, 64)',
+                'rgb(255, 205, 86)',
+                'rgb(75, 192, 192)'
+              ],
+              borderWidth: 1
+            }]
+          };
+
+
+
+          const config = {
+            type: 'bar',
+            data: data,
+            options: {
+              scales: {
+                y: {
+                  beginAtZero: true
+                }
+              }
+            },
+
+          };
+
+          </script>
+
+        
+
+
+        <div class="tabela-box">
+          <table align="center" class="table" border="1">
+          </table>
+        </div>
+
+      </div>
+
+
+
+
+    </div>
+
+
+  </div>
+</body>
+<script>
+
+  var el_up = document.getElementById("GFG_UP");
+  var list = [
+    {
+      /*"id": "a7c53eb1-4f5e-4eba-9764-ad205d0891f9",
+      "equipmentModelId": "a3540227-2f0e-4362-9517-92f41dabbfdf",
+      */"Nome": "CA-0001",
+      "Tipo": "Caminhão de carga",
+    },
+    {
+      /*"id": "1c7e9615-cc1c-4d72-8496-190fe5791c8b",
+      "equipmentModelId": "a3540227-2f0e-4362-9517-92f41dabbfdf",
+      */"Nome": "CA-0002",
+      "Tipo": "Caminhão de carga",
+    },
+    {
+      /*"id": "2b5796cb-21c1-480e-8886-4498ea593a65",
+      "equipmentModelId": "a3540227-2f0e-4362-9517-92f41dabbfdf",
+      */"Nome": "CA-0003",
+      "Tipo": "Caminhão de carga",
+    },
+    {
+      /*"id": "1d222cdc-01dd-4caa-8934-5351d3995cfb",
+      "equipmentModelId": "a3540227-2f0e-4362-9517-92f41dabbfdf",
+      */"Nome": "CA-0004",
+      "Tipo": "Caminhão de carga",
+    },
+    {
+      /*"id": "491b983b-950c-4a88-942d-487e99b92540",
+      "equipmentModelId": "a4b0c114-acd8-4151-9449-7d12ab9bf40f",
+      */"Nome": "HV-1001",
+      "Tipo": "Harvester"
+    },
+    {
+      /*"id": "39317fcb-79e7-4e7e-83dc-723a9b63633c",
+      "equipmentModelId": "a4b0c114-acd8-4151-9449-7d12ab9bf40f",
+      */"Nome": "HV-1002",
+      "Tipo": "Harvester"
+    },
+    {
+      /*"id": "c79ef1de-92f3-4edd-bd55-553056640449",
+      "equipmentModelId": "9c3d009e-0d42-4a6e-9036-193e9bca3199",
+      */"Nome": "GT-2001",
+      "Tipo": "Garra traçadora"
+    },
+    {
+      /*"id": "b7aaba00-13f7-44a0-8bf1-bc163afcf9d8",
+      "equipmentModelId": "9c3d009e-0d42-4a6e-9036-193e9bca3199",
+      */"Nome": "GT-2002",
+      "Tipo": "Garra traçadora"
+    },
+    {
+     /* "id": "fe2a2e11-bfa6-46b6-990b-fd8175946b7e",
+      "equipmentModelId": "9c3d009e-0d42-4a6e-9036-193e9bca3199",
+      */"Nome": "GT-2003",
+      "Tipo": "Garra traçadora"
+    }
+  ];
+
+
+
+  function constructTable(selector) {
+
+    // Getting the all column names
+    var cols = Headers(list, selector);
+
+    // Traversing the JSON data
+    console.log(list.length);
+    for (var i = 0; i < list.length; i++) {
+      var row = $('<tr/>');
+      for (var colIndex = 0; colIndex < cols.length; colIndex++) {
+        var val = list[i][cols[colIndex]];
+
+        // If there is any key, which is matching
+        // with the column name
+        if (val == null) val = "";
+        row.append($('<td/>' + "id=" + val).html(val));
+
+
+      }
+
+      // Adding each row to the table
+      $(selector).append(row);
+    }
+  }
+
+  function Headers(list, selector) {
+    var columns = [];
+    var header = $('<tr/>');
+
+    for (var i = 0; i < list.length; i++) {
+      var row = list[i];
+
+      for (var k in row) {
+        if ($.inArray(k, columns) == -1) {
+          columns.push(k);
+
+          // Creating the header
+          header.append($('<th/>').html(k));
+        }
+      }
+    }
+
+    // Appending the header to the table
+    $(selector).append(header);
+    return columns;
+  }
+  constructTable('.table');
+</script>
+
+</html>
