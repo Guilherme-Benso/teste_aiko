@@ -1,4 +1,2 @@
 # teste_aiko
-![Badge em Desenvolvimento](http://img.shields.io/static/v1?label=STATUS&message=EM%20DESENVOLVIMENTO&color=GREEN&style=for-the-badge)
-</br>
-Projeto de teste para um estágio!
+## Este projeto foi um teste para um estágio!
